@@ -1,0 +1,43 @@
+1.
+USE world;
+
+SELECT COUNT(CountryCode) FROM city WHERE CountryCode = "USA";
+
+2.
+SELECT Name, Population, LifeExpectancy FROM country WHERE name = 'Argentina';
+
+3. 
+SELECT Name, LifeExpectancy FROM country WHERE LifeExpectancy IS NOT NULL AND Name IS NOT NULL
+ORDER BY LifeExpectancy DESC
+LIMIT 1;
+
+4. 
+SELECT city.id, city.name, country.name, country.continent, country.capital FROM city
+JOIN country ON country.code = city.CountryCode
+WHERE city.ID = 653; 
+
+5. 
+SELECT * FROM countrylanguage cc
+JOIN country ON country.Code = cc.countrycode
+WHERE country.region = "Southeast Asia"
+GROUP BY cc.language;
+
+6. 
+SELECT * FROM city WHERE NAME LIKE "F%" LIMIT 25; 
+
+7. 
+SELECT COUNT(city.name) FROM city
+JOIN country ON country.code = city.countrycode
+WHERE country.name = "China";
+
+8. 
+SELECT * FROM country
+WHERE POPULATION IS NOT NULL
+ORDER BY POPULATION ASC
+LIMIT 1;
+
+9. 
+SELECT COUNT(NAME) FROM country;
+
+10.
+

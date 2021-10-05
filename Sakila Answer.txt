@@ -1,0 +1,154 @@
+1.
+SELECT * FROM actor;
+
+2. 
+USE sakila;
+
+SELECT * FROM actor WHERE first_name = "John";
+
+3.
+USE sakila;
+
+SELECT * FROM actor WHERE last_name = "Neeson";
+
+4.
+USE sakila;
+
+SELECT * FROM actor WHERE (actor_id % 10) = 0;
+
+5. 
+USE sakila;
+
+SELECT description FROM film WHERE film_id = 100;
+
+6. 
+USE sakila;
+
+SELECT * FROM film WHERE rating = "R";
+
+7. 
+USE sakila;
+
+SELECT * FROM film WHERE rating NOT IN ("R");
+
+8. 
+USE sakila;
+
+SELECT * FROM film ORDER BY length ASC LIMIT 10;
+
+9. 
+USE sakila;
+
+SELECT * FROM film ORDER BY length DESC;
+
+10. 
+USE sakila;
+
+SELECT * FROM film WHERE special_features LIKE  "%Deleted Scenes%";
+
+11. 
+USE sakila;
+
+SELECT last_name, COUNT(last_name) as C FROM actor
+GROUP BY last_name HAVING C =1
+ORDER BY last_name DESC;
+
+12.
+USE sakila;
+
+SELECT last_name, COUNT(last_name) as C FROM actor
+GROUP BY last_name HAVING C > 1
+ORDER BY C DESC;
+
+13. 
+USE sakila;
+
+SELECT a.actor_id, a.first_name, a.last_name ,COUNT(fa.actor_id) as movie_frequency FROM film_actor fa
+JOIN actor a ON a.actor_id=fa.actor_id
+GROUP BY fa.actor_id
+ORDER BY movie_frequency DESC
+LIMIT 1;
+
+14. 
+USE sakila;
+
+SELECT * FROM film WHERE title = 'Academy Dinosaur';
+
+15. 
+USE sakila;
+
+SELECT AVG (length) FROM film;
+
+16. 
+USE sakila;
+
+SELECT c.name , AVG(f.length) FROM film f
+JOIN film_category fc ON fc.film_id=f.film_id
+JOIN category c ON c.category_id=fc.category_id
+GROUP BY c.name;
+
+17. 
+USE sakila;
+
+SELECT * FROM film WHERE description LIKE "%robot%" ;
+
+18. 
+USE sakila;
+
+SELECT release_year, COUNT(release_year) as C FROM film
+GROUP BY release_year;
+
+
+19.
+USE sakila;
+
+SELECT c.name , f.title FROM film f
+JOIN film_category fc ON fc.film_id=f.film_id
+JOIN category c ON c.category_id=fc.category_id
+HAVING c.name = "Horror";
+
+20.
+USE sakila;
+
+SELECT * FROM staff WHERE staff_id = 2;
+
+
+21. 
+USE sakila;
+
+SELECT a.actor_id, a.first_name, a.last_name, f.title FROM film_actor fa
+JOIN actor a ON a.actor_id=fa.actor_id
+JOIN film f ON f.film_id=fa.film_id
+WHERE a.first_name = "Fred" AND a.last_name = "Costner";
+
+22.
+USE sakila;
+
+SELECT COUNT(DISTINCT COUNTRY) from country;
+
+23.
+USE sakila;
+
+SELECT * FROM language
+ORDER BY name DESC;
+
+24. 
+USE sakila;
+
+SELECT * FROM ACTOR
+WHERE last_name LIKE "%son"
+ORDER BY last_name ASC;
+
+25. 
+USE sakila;
+
+
+SELECT c.name , COUNT(c.name) as genre_count FROM film f
+JOIN film_category fc ON fc.film_id=f.film_id
+JOIN category c ON c.category_id=fc.category_id
+GROUP BY c.name
+ORDER BY genre_count DESC
+LIMIT 1;
+
+
+
